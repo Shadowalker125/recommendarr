@@ -41,7 +41,7 @@ fastify.get('/', async (request, reply) => {
                 }
             }
         }
-        reply.send(Object.keys(ids).map(id => ({MusicBrainzID: id})));
+        reply.send(Object.keys(ids).map(id => ({MusicBrainzId: id})));
     }catch (error) {
         reply.status(500).send({ error: error.message });
     }   
