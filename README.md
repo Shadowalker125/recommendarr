@@ -21,6 +21,8 @@ This allows, for example, someone to then point Lidarr to the URL using the cust
 
 At the moment, this isnt containerized and requires node.js
 
+Follow Run locally below, then add the URL to lidarr under Settings>Import Lists>Custom List
+
 
 ## Environment Variables
 
