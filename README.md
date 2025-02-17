@@ -56,7 +56,7 @@ Start the server
 
 ## Usage/Examples
 
-spits out JSON object on localhost:3000
+spits out JSON object on localhost:4500
 
 ```json
 [{"MusicBrainzId":"41656317-c512-456f-9fe7-1f7fb8482a34"},
