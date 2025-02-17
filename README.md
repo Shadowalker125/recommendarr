@@ -1,3 +1,6 @@
+>[!CAUTION]
+>If left unchecked, this script will add an enormously large amount of music to a lidarr instance, as this pulls the ARTIST id and lidarr will then proceed to monitor the ENTIRE artist discography. You have been warned.
+
 
 # Recommendarr
 
@@ -7,6 +10,9 @@ This is a very simple app that querys ListenBrainz API for a users generated pla
 
 This allows, for example, someone to then point Lidarr to the URL using the custom list import and have these artists automatically added to their library.
 
+>[!TIP]
+>Plexamp can be used aswell, you just have to link it to last.fm first, then link last.fm to listenbrainz. https://plex.tv/users/other-services
+
 > [!IMPORTANT]  
 > This script will not work with lidarr until [this PR](https://github.com/Lidarr/Lidarr/pull/5399) is live
 
@@ -14,6 +20,8 @@ This allows, for example, someone to then point Lidarr to the URL using the cust
 ## Installation
 
 At the moment, this isnt containerized and requires node.js
+
+Follow Run locally below, then add the URL to lidarr under Settings>Import Lists>Custom List
 
 
 ## Environment Variables
