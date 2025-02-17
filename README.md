@@ -1,4 +1,4 @@
->[!WARNING]
+>[!CAUTION]
 >If left unchecked, this script will add an enormously large amount of music to a lidarr instance, as this pulls the ARTIST id and lidarr will then proceed to monitor the ENTIRE artist discography. You have been warned.
 
 
@@ -9,6 +9,9 @@
 This is a very simple app that querys ListenBrainz API for a users generated playlists. This allows a way for someone who has connected spotify, last.fm, apple music, soundcloud, and/or youtube to listenbrainz to grab artist information from these generated playlists and spit out a JSON object of all the artists MusicBrainz ID's.
 
 This allows, for example, someone to then point Lidarr to the URL using the custom list import and have these artists automatically added to their library.
+
+>[!TIP]
+>Plexamp can be used aswell, you just have to link it to last.fm first, then link last.fm to listenbrainz. https://plex.tv/users/other-services
 
 > [!IMPORTANT]  
 > This script will not work with lidarr until [this PR](https://github.com/Lidarr/Lidarr/pull/5399) is live
