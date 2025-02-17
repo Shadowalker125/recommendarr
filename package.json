@@ -2,11 +2,12 @@
   "name": "lidarr-list",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
+  "type": "module",
   "scripts": {
-    "test": "node test.js",
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "old": "nodemon .original"
   },
   "keywords": [],
   "author": "",
