@@ -1,3 +1,6 @@
+>[!WARNING]
+>If left unchecked, this script will add an enormously large amount of music to a lidarr instance, as this pulls the ARTIST id and lidarr will then proceed to monitor the ENTIRE artist discography. You have been warned.
+
 
 # Recommendarr
 
