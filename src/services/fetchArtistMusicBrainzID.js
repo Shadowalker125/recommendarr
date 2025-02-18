@@ -1,11 +1,6 @@
 import {sprintf} from "sprintf-js";
 import {API_PLAYLIST, API_PLAYLISTS, EXT_PLAYLIST, EXT_TRACK, TMPL_PLAYLIST, LISTS, USERS} from "../config/config.js";
-import axios from "axios";
-
-async function fetchData(url) {
-    const resp = await axios.get(url);
-    return resp.data;
-}
+import fetchData from "./fetchData.js";
 
 export default async function fetchArtistMusicBrainzID() {
     try {
