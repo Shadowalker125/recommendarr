@@ -1,4 +1,4 @@
-import fetchArtistMusicBrainzID from "../services/fetchArtistMusicBrainzID.js";
+import {getArtistMusicBrainzId} from "../controllers/artistController.js";
 
 /**
  * Encapsulates the routes
@@ -6,15 +6,8 @@ import fetchArtistMusicBrainzID from "../services/fetchArtistMusicBrainzID.js";
  * @param {Object} options plugin options, refer to https://fastify.dev/docs/latest/Reference/Plugins/#plugin-options
  */
 
-async function routes(fastify, options) {
-    fastify.get('/',async (request, reply) => {
-        try {
-            const ArtistMusicBrainzIDs = await fetchArtistMusicBrainzID();
-            reply.send(ArtistMusicBrainzIDs);
-        } catch (error) {
-            reply.status(500).send({ error: error.message });
-        }
-    })
+async function artistRoutes(fastify, options) {
+    fastify.get('/', getArtistMusicBrainzId);
 }
 
-export default routes;
+export default artistRoutes;
