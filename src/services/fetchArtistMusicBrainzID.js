@@ -2,7 +2,12 @@ import {sprintf} from "sprintf-js";
 import {API_PLAYLIST, API_PLAYLISTS, EXT_PLAYLIST, EXT_TRACK, TMPL_PLAYLIST, LISTS, USERS} from "../config/config.js";
 import axios from "axios";
 
-async function fetchArtistMusicBrainzID() {
+async function fetchData(url) {
+    const resp = await axios.get(url);
+    return resp.data;
+}
+
+export default async function fetchArtistMusicBrainzID() {
     try {
         const ids = {};
 
@@ -34,5 +39,3 @@ async function fetchArtistMusicBrainzID() {
         throw new Error(`Error fetching MusicBrainzID: ${error.message}`);
     }}
 }
-
-export default { fetchArtistMusicBrainzID };
