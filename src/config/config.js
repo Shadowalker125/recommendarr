@@ -21,6 +21,6 @@ export const EXT_TRACK = "https://musicbrainz.org/doc/jspf#track";
 // Template
 export const TMPL_PLAYLIST=  "https://listenbrainz.org/playlist/%s";
 
-// Enviroment Variables
+// Environment Variables
 export const USERS = process.env.USERS.split(',');
 export const LISTS = process.env.LISTS.split(',');
