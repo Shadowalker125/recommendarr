@@ -1,5 +1,5 @@
 import {sprintf} from "sprintf-js";
-import {API_PLAYLIST, API_PLAYLISTS, EXT_PLAYLIST, EXT_TRACK, TMPL_PLAYLIST, LISTS, USERS} from "../config/config.js";
+import {API_PLAYLIST, API_PLAYLISTS, EXT_PLAYLIST, EXT_TRACK, LISTS, USERS} from "../config/config.js";
 import fetchData from "./fetchData.js";
 
 export default async function fetchArtistMusicBrainzID() {
