@@ -6,7 +6,7 @@
 
 *Name (WIP)*
 
-This is a very simple app that querys ListenBrainz API for a users generated playlists. This allows a way for someone who has connected spotify, last.fm, apple music, soundcloud, and/or youtube to listenbrainz to grab artist information from these generated playlists and spit out a JSON object of all the artists MusicBrainz ID's.
+This is a very simple app that queries ListenBrainz API for a users generated playlists. This allows a way for someone who has connected spotify, last.fm, apple music, soundcloud, and/or youtube to listenbrainz to grab artist information from these generated playlists and spit out a JSON object of all the artists MusicBrainz ID's.
 
 This allows, for example, someone to then point Lidarr to the URL using the custom list import and have these artists automatically added to their library.
 
@@ -56,7 +56,7 @@ Start the server
 
 ## Usage/Examples
 
-spits out JSON object on localhost:3000
+spits out JSON object on localhost:4500
 
 ```json
 [{"MusicBrainzId":"41656317-c512-456f-9fe7-1f7fb8482a34"},
