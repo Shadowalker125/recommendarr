@@ -1,9 +1,4 @@
-import {sprintf} from "sprintf-js";
-import {API_PLAYLISTS, API_PLAYLIST, EXT_PLAYLIST, EXT_TRACK, TMPL_PLAYLIST, USERS, LISTS} from "../config/config.js";
-import axios from "axios";
 import fetchArtistMusicBrainzID from "../services/fetchArtistMusicBrainzID.js";
-
-
 
 /**
  * Encapsulates the routes
