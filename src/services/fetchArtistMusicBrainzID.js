@@ -1,8 +1,9 @@
 import {sprintf} from "sprintf-js";
-import {API_PLAYLIST, API_PLAYLISTS, EXT_PLAYLIST, EXT_TRACK, LISTS, USERS} from "../config/config.js";
+import {API_PLAYLIST, API_PLAYLISTS, EXT_PLAYLIST, EXT_TRACK, LISTS, USERS, validateEnv} from "../config/config.js";
 import fetchData from "./fetchData.js";
 
 export default async function fetchArtistMusicBrainzID() {
+    validateEnv();
     try {
         const ids = {};
 
