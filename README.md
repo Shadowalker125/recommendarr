@@ -19,44 +19,50 @@ This allows, for example, someone to then point Lidarr to the URL using the cust
 
 ## Installation
 
-At the moment, this isnt containerized and requires node.js
+### unRaid community apps
+*soon*
 
-Follow Run locally below, then add the URL to lidarr under Settings>Import Lists>Custom List
+### docker-compose
+
+```yaml
+services:
+  server:
+    image: ghcr.io/shadowalker125/recommendarr:latest
+    container_name: recommendarr
+    environment:
+      PUID: 1000
+      PGID: 1000
+      NODE_ENV: production
+      USERS: ""
+      LISTS: ""
+    ports:
+      - "4500:4500"
+```
 
 
 ## Environment Variables
 
 To run this project, you will need to update the following environment variables to your .env file
 
-`USER`
+Users is an array of any Listenbrainz usernames: 
+
+`USERS`
+
+Lists is any of the created lists in listenbrainz. "weekly-exploration" is the recommended one
 
 `LISTS`
 
-
-## Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/Shadowalker125/recommendarr.git
-```
-
-Install dependencies
-
-```bash
-  npm install
-```
-
-Start the server
-
-```bash
-  npm run start
-```
-
-
 ## Usage/Examples
 
-spits out JSON object on localhost:4500
+To use with Lidarr, open Settings > Import Lists > Add List > Custom List
+
+Change settings to your liking regarding monitoring, quality profile, etc...
+
+For the List URL, simply add the url and port '4500' for the running instance of recommendarr 
+
+ex: 'http://localhost:4500'
+
+spits out JSON object
 
 ```json
 [{"MusicBrainzId":"41656317-c512-456f-9fe7-1f7fb8482a34"},
