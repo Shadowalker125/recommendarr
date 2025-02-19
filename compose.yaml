@@ -1,10 +1,12 @@
 services:
   server:
-    build:
-      context: .
+    build: .
+    container_name: recommendarr
     environment:
+      PUID: 1000
+      PGID: 1000
       NODE_ENV: production
-      USERS:
-      LISTS:
+      USERS: ""
+      LISTS: ""
     ports:
-      - 4500:4500
+      - "4500:4500"
