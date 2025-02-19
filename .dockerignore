@@ -30,5 +30,7 @@
 **/values.dev.yaml
 **/build
 **/dist
+**/coverage
+**/*.lcov
 LICENSE
 README.md

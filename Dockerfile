@@ -10,7 +10,7 @@ ARG NODE_VERSION=20
 FROM node:${NODE_VERSION}-alpine
 
 # Use production node environment by default.
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 
 WORKDIR /usr/src/app
@@ -31,7 +31,7 @@ USER node
 COPY . .
 
 # Expose the port that the application listens on.
-EXPOSE 3000
+EXPOSE 4500
 
 # Run the application.
 CMD node src/server.js
