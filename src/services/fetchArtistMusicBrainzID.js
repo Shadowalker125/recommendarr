@@ -1,45 +1,75 @@
-import {sprintf} from "sprintf-js";
-import {API_PLAYLIST, API_PLAYLISTS, EXT_PLAYLIST, EXT_TRACK, LISTS, USERS, validateEnv} from "../config/config.js";
-import fetchData from "./fetchData.js";
+import { sprintf } from "sprintf-js";
+import { API_PLAYLISTS, API_PLAYLIST, EXT_PLAYLIST, EXT_TRACK, LISTS, USERS, validateEnv} from "../config/config.js";
 
-export default async function fetchArtistMusicBrainzID() {
+// Fetch list of all Users generated playlists
+async function getUserPlaylist(user, fetchData) {
+    const response = await fetchData(sprintf(API_PLAYLISTS, user));
+    return response?.playlists || [];
+}
+
+// Extracts the MusicBrainzID of each playlist
+function extractMusicBrainzIDFromList(list) {
+    const meta = list?.playlist?.extension?.[EXT_PLAYLIST];
+    const type = meta?.additional_metadata?.algorithm_metadata?.source_patch;
+    if (!LISTS.includes(type)) return null;
+
+    return list?.playlist?.identifier?.split('/').pop();
+}
+
+// Extracts all tracks from all playlists
+async function getTracksFromPlaylist(mbid, fetchData) {
+    if (!mbid) return [];
+
+    const response = await fetchData(sprintf(API_PLAYLIST, mbid));
+    return response?.playlist?.track || [];
+}
+
+// Extracts the artist's MusicBrainzId from each track
+function extractArtistIDsFromTracks(tracks) {
+    const ids = new Set();
+
+    for (const track of tracks) {
+        const trackMeta = track?.extension?.[EXT_TRACK];
+        const artists = trackMeta?.additional_metadata?.artists || [];
+
+        for (const artist of artists) {
+            if (artist.artist_mbid) {
+                ids.add(artist.artist_mbid);
+            }
+        }
+    }
+
+    return ids;
+}
+
+// Map  artists ID's in JSON for export
+export default async function fetchArtistMusicBrainzID(fetchData) {
     validateEnv();
 
     try {
-        const ids = new Set();
+        const artistIDs = new Set();
 
         for (const user of USERS) {
-            const listsResponse = await fetchData(sprintf(API_PLAYLISTS, user));
-            const lists = listsResponse?.playlists || [];
+            const userLists = await getUserPlaylist(user, fetchData);
 
-            for (const list of lists) {
-                const meta = list?.playlist?.extension?.[EXT_PLAYLIST];
-                const type = meta?.additional_metadata?.algorithm_metadata?.source_patch;
+            for (const validList of LISTS) {
+                const list = userLists.find(L => {
+                    const meta = L?.playlist?.extension?.[EXT_PLAYLIST];
+                    return meta?.additional_metadata?.algorithm_metadata?.source_patch === validList;
+                });
 
-                if (!LISTS.includes(type)) continue;
+                const mbid = extractMusicBrainzIDFromList(list);
+                const tracks = await getTracksFromPlaylist(mbid, fetchData);
+                const ids = extractArtistIDsFromTracks(tracks);
 
-                const mbid = list?.playlist?.identifier?.split('/').pop(); //Extract mbid
-                if (!mbid) continue;
-
-                const songsResponse = await fetchData(sprintf(API_PLAYLIST, mbid));
-                const songs = songsResponse?.playlist?.track || [];
-
-                for (const song of songs) {
-                    const trackMeta = song?.extension?.[EXT_TRACK];
-                    const artists = trackMeta?.additional_metadata?.artists || [];
-
-                    for (const artist of artists) {
-                        if (artist.artist_mbid) {
-                            ids.add(artist.artist_mbid);
-                        }
-                    }
+                if (ids && ids.size > 0) {
+                    ids.forEach(id => artistIDs.add(id));
                 }
             }
         }
 
-        return [...ids].map(id => ({ MusicBrainzID: id }));
-
-    } catch (error) {{
+        return [...artistIDs].map(id => ({ MusicBrainzID: id }));
+    } catch (error) {
         throw new Error(`Error fetching MusicBrainzID: ${error.message}`);
-    }}
+    }
 }
