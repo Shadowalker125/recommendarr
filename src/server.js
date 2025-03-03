@@ -1,8 +1,6 @@
 import Fastify from 'fastify'
 import artistRoutes from './routes/artistRoutes.js'
-/**
- * @type {import('fastify').FastifyInstance} Instance of Fastify
- */
+
 const fastify = Fastify({
     logger: true
 })
