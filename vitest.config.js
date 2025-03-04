@@ -6,7 +6,7 @@ export default defineConfig({
     },
     resolve: {
         alias: {
-            '@src': '/src',
+            '@src': new URL('/src', import.meta.url).pathname,
         },
     },
 });
