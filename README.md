@@ -14,7 +14,7 @@ This allows, for example, someone to then point Lidarr to the URL using the cust
 >Plexamp can be used aswell, you just have to link it to last.fm first, then link last.fm to listenbrainz. https://plex.tv/users/other-services
 
 > [!IMPORTANT]  
-> This script will not work with lidarr until [this PR](https://github.com/Lidarr/Lidarr/pull/5399) is live
+> This script will not work with lidarr until [this PR](https://github.com/Lidarr/Lidarr/pull/5399) is live (Currently in pre-release  2.10.0.4574)
 
 
 ## Installation
